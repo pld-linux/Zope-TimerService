@@ -32,7 +32,7 @@ Modu³ wspomagaj±cy dla Zope-Scheduler.
 
 %build
 CFLAGS="%{rpmcflags}"
-export CLFAGS
+export CFLAGS
 cd %{zope_subname}/timerserver
 python setup.py build_ext
 
