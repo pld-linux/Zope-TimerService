@@ -1,12 +1,11 @@
-# WARNING: Need test! 
-#
+
 %define		zope_subname	TimerService
 %define		module timerserver
 Summary:	Support module for Zope-Scheduler
 Summary(pl):	Modu³ wspomagaj±cy dla Zope-Scheduler
 Name:		Zope-%{zope_subname}
 Version:	0.2
-Release:	0.2
+Release:	1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://dev.legco.biz/downloads/%{zope_subname}-%{version}.tar.gz
@@ -46,13 +45,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sbindir}/Zope-timerserver_remover
 
 cp -af %{zope_subname}/timerserver $RPM_BUILD_ROOT%{py_sitedir}/%{module}
 cp -af %{zope_subname}/{zpt,*.py,version.txt} $RPM_BUILD_ROOT%{_datadir}/%{name}
-
-#cd $RPM_BUILD_ROOT%{_datadir}/%{name}/%{module}
-#
-#python setup.py install \
-#        --root=$RPM_BUILD_ROOT \
-#        --optimize=2
-#rm -rf $RPM_BUILD_ROOT%{_datadir}/%{name}/timerserver
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/%{name}
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/%{name}
