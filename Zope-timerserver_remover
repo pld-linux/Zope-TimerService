@@ -1,0 +1,58 @@
+#!/usr/bin/perl -w
+# Delete substring from zope.conf between two string
+# For PLD by Ciesiel
+
+use strict;
+use locale;
+use File::Copy;
+
+my $plik_we;
+my $plik_tmp;
+my $first_string;
+my $sec_string;
+my $usun;
+
+    $plik_we="/etc/zope/main/zope.conf";
+    $plik_tmp="./zope_pld_tmp";   
+    $first_string="%import timerserver";
+    $sec_string="</timer-server>"; 
+    $usun=0;
+    
+open (PLIK_WEJ,"$plik_we") || die "Error - File not found: $plik_we\n";
+open (PLIK_WYJ,">$plik_tmp") || die "Error - File not found: $plik_tmp\n";
+
+while (<PLIK_WEJ>)
+{
+    if (/^$first_string/)
+    {    
+        ++$usun;
+    }
+
+    if (/^$sec_string/)
+    {
+	$usun=99999.5;
+    }    
+
+    if ($usun>0)
+    {
+	$_="";
+    }
+    print PLIK_WYJ;
+    
+    if ($usun==99999.5)
+    {
+	$usun=0;    
+    }
+}
+
+close(PLIK_WEJ);
+close(PLIK_WYJ);
+if ($usun==0)
+    {
+        move($plik_tmp,$plik_we);
+    }
+    else
+        {
+        unlink($plik_tmp);
+        print "\nNot found $first_string or $sec_string in zope.conf! - zope.conf not changed!\n";
+        }
