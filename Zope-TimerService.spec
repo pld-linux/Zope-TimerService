@@ -12,7 +12,7 @@ Source0:	http://dev.legco.biz/downloads/%{zope_subname}-%{version}.tar.gz
 # Source0-md5:	5fb0fce2b90f69478a9370b313a45aa9
 Source1:	Zope-timerserver_remover
 URL:		http://dev.legco.biz/products/timerservice/
-BuildRequires:  python
+BuildRequires:	python
 %pyrequires_eq	python-modules
 Requires:	Zope
 Requires:	perl-modules
