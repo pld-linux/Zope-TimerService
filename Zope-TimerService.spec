@@ -1,4 +1,4 @@
-# WARNING: not working propertly - Zope 2.7 not started 
+# WARNING: Need test! 
 #
 %define		zope_subname	TimerService
 %define		module timerserver
@@ -6,7 +6,7 @@ Summary:	Support module for Zope-Scheduler
 Summary(pl):	Modu³ wspomagaj±cy dla Zope-Scheduler
 Name:		Zope-%{zope_subname}
 Version:	0.2
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://dev.legco.biz/downloads/%{zope_subname}-%{version}.tar.gz
@@ -33,6 +33,7 @@ Modu³ wspomagaj±cy dla Zope-Scheduler.
 CFLAGS="%{rpmcflags}"
 export CFLAGS
 cd %{zope_subname}/timerserver
+rm -rf .#*
 python setup.py build_ext
 
 %install
@@ -64,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /usr/sbin/installzopeproduct %{_datadir}/%{name} %{zope_subname}
 
-ln -s %{py_sitedir}/%{module} /usr/lib/zope/lib/python/timerserver
+# ln -s %{py_sitedir}/%{module} /usr/lib/zope/lib/python/timerserver
 
 echo "%import timerserver" >> /etc/zope/main/zope.conf
 echo "<timer-server>" >> /etc/zope/main/zope.conf
