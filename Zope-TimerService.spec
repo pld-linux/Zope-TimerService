@@ -5,7 +5,7 @@ Summary:	Support module for Zope-Scheduler
 Summary(pl):	Modu³ wspomagaj±cy dla Zope-Scheduler
 Name:		Zope-%{zope_subname}
 Version:	0.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://dev.legco.biz/downloads/%{zope_subname}-%{version}.tar.gz
@@ -17,7 +17,6 @@ BuildRequires:	python
 Requires:	Zope
 Requires:	perl-modules
 Requires(post,postun):	/usr/sbin/installzopeproduct
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
