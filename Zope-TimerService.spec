@@ -5,13 +5,14 @@ Summary:	Support module for Zope-Scheduler
 Summary(pl):	Modu³ wspomagaj±cy dla Zope-Scheduler
 Name:		Zope-%{zope_subname}
 Version:	0.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://dev.legco.biz/downloads/%{zope_subname}-%{version}.tar.gz
 # Source0-md5:	5fb0fce2b90f69478a9370b313a45aa9
 Source1:	Zope-timerserver_remover
 URL:		http://dev.legco.biz/products/timerservice/
+BuildRequires:	python
 %pyrequires_eq	python-modules
 Requires:	Zope
 Requires:	perl-modules
