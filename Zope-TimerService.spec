@@ -1,6 +1,5 @@
 # WARNING: not working propertly - Zope 2.7 not started 
 #
-%include	/usr/lib/rpm/macros.python
 %define		zope_subname	TimerService
 %define		module timerserver
 Summary:	Support module for Zope-Scheduler
