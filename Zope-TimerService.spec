@@ -13,10 +13,11 @@ Source0:	http://dev.legco.biz/downloads/%{zope_subname}-%{version}.tar.gz
 Source1:	Zope-timerserver_remover
 URL:		http://dev.legco.biz/products/timerservice/
 BuildRequires:	python
+BuildRequires:	rpmbuild(macros) >= 1.268
 %pyrequires_eq	python-modules
+Requires(post,postun):	/usr/sbin/installzopeproduct
 Requires:	Zope
 Requires:	perl-modules
-Requires(post,postun):	/usr/sbin/installzopeproduct
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,15 +58,14 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /usr/sbin/installzopeproduct %{_datadir}/%{name} %{zope_subname}
 
-# ln -s %{py_sitedir}/%{module} /usr/lib/zope/lib/python/timerserver
-
-echo "%import timerserver" >> /etc/zope/main/zope.conf
-echo "<timer-server>" >> /etc/zope/main/zope.conf
-echo "</timer-server>" >> /etc/zope/main/zope.conf
-
-if [ -f /var/lock/subsys/zope ]; then
-	/etc/rc.d/init.d/zope restart >&2
+# ln -s %{py_sitedir}/%{module} %{_prefix}/lib/zope/lib/python/timerserver
+if [ "$1" = 1 ]; then
+	echo "%import timerserver" >> /etc/zope/main/zope.conf
+	echo "<timer-server>" >> /etc/zope/main/zope.conf
+	echo "</timer-server>" >> /etc/zope/main/zope.conf
 fi
+
+%service -q zope restart
 
 %preun
 /usr/sbin/Zope-timerserver_remover
@@ -73,9 +73,7 @@ fi
 %postun
 if [ "$1" = "0" ]; then
 	/usr/sbin/installzopeproduct -d %{zope_subname}
-	if [ -f /var/lock/subsys/zope ]; then
-		/etc/rc.d/init.d/zope restart >&2
-	fi
+	%service -q zope restart
 fi
 
 %files
