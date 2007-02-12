@@ -2,7 +2,7 @@
 %define		zope_subname	TimerService
 %define		module timerserver
 Summary:	Support module for Zope-Scheduler
-Summary(pl.UTF-8):   Moduł wspomagający dla Zope-Scheduler
+Summary(pl.UTF-8):	Moduł wspomagający dla Zope-Scheduler
 Name:		Zope-%{zope_subname}
 Version:	0.2
 Release:	4
